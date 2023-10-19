@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Calendar</title>
+    <style>
+      body {
+          margin: 0;
+          padding: 0;
+          background-color: #ffffff; /* White background */
+          font-family: Arial, sans-serif;
+      }
+
+      #calendar {
+          background-color: #ffffff; /* Orange background */
+          color: #ff6600; /* Blue text */
+          padding: 20px;
+      }
+
+      #calendar-header {
+          text-align: center;
+      }
+
+      #calendar-header button {
+          background-color: #0056b3; /* Blue button */
+          color: #ffffff; /* White text */
+          padding: 5px 10px;
+          border: none;
+          cursor: pointer;
+      }
+
+      #calendar-header button:hover {
+          background-color: #003a8c; /* Darker blue on hover */
+      }
+
+      #current-date {
+          font-size: 24px;
+          margin: 10px 0;
+      }
+
+      table {
+          width: 100%;
+          border-collapse: collapse;
+          background-color: #ffffff; /* Light Orange background */
+      }
+
+      table, th, td {
+          border: 1px solid #0056b3; /* Blue border */
+      }
+
+      th, td {
+          padding: 10px;
+          text-align: center;
+      }
+
+      h1 {
+        color: #ff6600
+      }
+    </style>
+</head>
+<body>
+  <h1 style="text-align: center;">Daily Illini Time Machine!</h1>
+    <div id="calendar">
+        <div id="calendar-header">
+            <button id="prev-year">Previous Year</button>
+            <button id="prev-month">Previous Month</button>
+            <h2 id="current-date">October 2023</h2>
+            <button id="next-month">Next Month</button>
+            <button id="next-year">Next Year</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Calendar days will be generated here using JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const currentDate = new Date();
+        let currentYear = currentDate.getFullYear();
+        let currentMonth = currentDate.getMonth();
+        const calendar = document.getElementById('calendar');
+        const currentDateElement = document.getElementById('current-date');
+        const calendarBody = document.querySelector('tbody');
+
+        function generateCalendar() {
+            // Clear the existing calendar
+            calendarBody.innerHTML = '';
+
+            // Calculate the first day and last day of the current month
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const lastDay = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+            // Set the calendar header
+            currentDateElement.textContent = new Date(currentYear, currentMonth, 1).toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+
+            // Generate calendar cells
+            let day = 1;
+            for (let i = 0; i < 6; i++) {
+                const row = document.createElement('tr');
+                for (let j = 0; j < 7; j++) {
+                    const cell = document.createElement('td');
+                    if (i === 0 && j < firstDay) {
+                        // Add empty cells before the first day of the month
+                        cell.textContent = '';
+                    } else if (day <= lastDay) {
+                        cell.textContent = day;
+                        day++;
+                        // You can add event listeners to the cells to handle clicks for transitioning to another page
+                    }
+                    row.appendChild(cell);
+                }
+                calendarBody.appendChild(row);
+            }
+        }
+
+        // Event listeners for navigating the calendar
+        document.getElementById('prev-year').addEventListener('click', () => {
+            currentYear--;
+            generateCalendar();
+        });
+
+        document.getElementById('prev-month').addEventListener('click', () => {
+            if (currentMonth === 0) {
+                currentMonth = 11;
+                currentYear--;
+            } else {
+                currentMonth--;
+            }
+            generateCalendar();
+        });
+
+        document.getElementById('next-month').addEventListener('click', () => {
+            if (currentMonth === 11) {
+                currentMonth = 0;
+                currentYear++;
+            } else {
+                currentMonth++;
+            }
+            generateCalendar();
+        });
+
+        document.getElementById('next-year').addEventListener('click', () => {
+            currentYear++;
+            generateCalendar();
+        });
+
+        // Initial calendar generation
+        generateCalendar();
+    </script>
+</body>
+</html>
