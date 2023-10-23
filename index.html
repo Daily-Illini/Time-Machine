@@ -4,63 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Calendar</title>
-    <style>
-      body {
-          margin: 0;
-          padding: 0;
-          background-color: #ffffff; /* White background */
-          font-family: Arial, sans-serif;
-      }
+  <style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-image: url('https://www.oursundayvisitor.com/wp-content/uploads/2023/05/AdobeStock_572223008.jpeg');
+        background-color: #f3f3f3; /* Light gray background */
+        font-family: Arial, sans-serif;
+        text-align: center;
+      background-position: center center; /* Center the background image horizontally and vertically */
+          background-size: cover; /* Cover the entire element with the background image */
+          background-attachment: fixed; /* Fixed background to prevent scrolling */
+    }
 
-      #calendar {
-          background-color: #ffffff; /* Orange background */
-          color: #ff6600; /* Blue text */
-          padding: 20px;
-      }
+    #calendar {
+        background-color: #ffffff; /* White background */
+        color: #9FD1E5; /* Dark blue text 9FD1E5*/
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+        max-width: 600px;
+        margin: 0 auto;
+    }
 
-      #calendar-header {
-          text-align: center;
-      }
+    #calendar-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-      #calendar-header button {
-          background-color: #0056b3; /* Blue button */
-          color: #ffffff; /* White text */
-          padding: 5px 10px;
-          border: none;
-          cursor: pointer;
-      }
+    #calendar-header button {
+        background-color: #0056b3; /* Dark blue button */
+        color: #fff; /* White text */
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin: 0 10px;
+    }
 
-      #calendar-header button:hover {
-          background-color: #003a8c; /* Darker blue on hover */
-      }
+    #calendar-header button:hover {
+        background-color: #003a8c; /* Darker blue on hover */
+    }
 
-      #current-date {
-          font-size: 24px;
-          margin: 10px 0;
-      }
+    #current-date {
+        font-size: 24px;
+        margin: 10px 0;
+    }
 
-      table {
-          width: 100%;
-          border-collapse: collapse;
-          background-color: #ffffff; /* Light Orange background */
-      }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #ffffff; /* White background */
+        border-radius: 10px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+    }
 
-      table, th, td {
-          border: 1px solid #0056b3; /* Blue border */
-      }
+    table, th, td {
+        border: 1px solid #e0e0e0; /* Light gray border */
+        background-color: #7A9EAC
+    }
 
-      th, td {
-          padding: 10px;
-          text-align: center;
-      }
+    th, td {
+        padding: 10px;
+        text-align: center;
+    }
 
-      h1 {
-        color: #ff6600
-      }
-    </style>
+    h1 {
+      color: #0056b3; /* Dark blue header text */
+      font-size: 28px;
+      margin: 20px 0;
+    }
+    th {
+        color: #3B4346; /* Dark blue for weekdays */
+    }
+
+    td {
+        color: #003a8c; /* Orange for days of the month */
+    }
+  </style>
 </head>
-<body>
-  <h1 style="text-align: center;">Daily Illini Time Machine!</h1>
+<body
     <div id="calendar">
         <div id="calendar-header">
             <button id="prev-year">Previous Year</button>
