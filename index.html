@@ -4,184 +4,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Calendar</title>
-  <style>
-    body {
-        margin: 0;
-        padding: 0;
-        background-image: url('https://www.oursundayvisitor.com/wp-content/uploads/2023/05/AdobeStock_572223008.jpeg');
-        background-color: #f3f3f3; /* Light gray background */
-        font-family: Arial, sans-serif;
-        text-align: center;
-      background-position: center center; /* Center the background image horizontally and vertically */
-          background-size: cover; /* Cover the entire element with the background image */
-          background-attachment: fixed; /* Fixed background to prevent scrolling */
-    }
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
-    #calendar {
-        background-color: #ffffff; /* White background */
-        color: #9FD1E5; /* Dark blue text 9FD1E5*/
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
-        max-width: 600px;
-        margin: 0 auto;
-    }
+    <style>
+        #calendar {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
 
-    #calendar-header {
-        text-align: center;
-        margin-bottom: 20px;
-    }
+        #calendar-header button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 0 10px;
+            text-align: center;
+        }
 
-    #calendar-header button {
-        background-color: #0056b3; /* Dark blue button */
-        color: #fff; /* White text */
-        padding: 10px 20px;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-        margin: 0 10px;
-    }
+        #calendar-header button:hover {
+            background-color: #0056b3;
+        }
 
-    #calendar-header button:hover {
-        background-color: #003a8c; /* Darker blue on hover */
-    }
+        h2#current-date {
+            font-size: 24px;
+            margin: 10px 0;
+            text-align: center;
+        }
 
-    #current-date {
-        font-size: 24px;
-        margin: 10px 0;
-    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        background-color: #ffffff; /* White background */
-        border-radius: 10px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
-    }
+        .month {
+            width: 50px; /* Make the month cells square shape */
+            height: 120px; /* Make the month cells square shape */
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center; /* Center the text */
+            align-items: center;
+            transition: background-color 0.3s;
+        }
 
-    table, th, td {
-        border: 1px solid #e0e0e0; /* Light gray border */
-        background-color: #7A9EAC
-    }
+        .month:hover {
+            background-color: #FFA500; /* Change the color to orange on hover */
+            color: #fff; /* Change text color to white on hover */
+        }
 
-    th, td {
-        padding: 10px;
-        text-align: center;
-    }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
 
-    h1 {
-      color: #0056b3; /* Dark blue header text */
-      font-size: 28px;
-      margin: 20px 0;
-    }
-    th {
-        color: #3B4346; /* Dark blue for weekdays */
-    }
+        h1 {
+            color: #007BFF;
+            font-size: 28px;
+            margin: 20px 0;
+        }
 
-    td {
-        color: #003a8c; /* Orange for days of the month */
-    }
-  </style>
+        #year-dropdown {
+            width: 120px; /* Made the dropdown wider */
+            margin-bottom: 10px; /* Added space under the dropdown */
+        }
+    </style>
 </head>
-<body
-    <div id="calendar">
-        <div id="calendar-header">
-            <button id="prev-year">Previous Year</button>
-            <button id="prev-month">Previous Month</button>
-            <h2 id="current-date">October 2023</h2>
-            <button id="next-month">Next Month</button>
-            <button id="next-year">Next Year</button>
-        </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Sun</th>
-                    <th>Mon</th>
-                    <th>Tue</th>
-                    <th>Wed</th>
-                    <th>Thu</th>
-                    <th>Fri</th>
-                    <th>Sat</th>
-                </tr>
-            </thead>
+<body>
+    <div class="container" id="calendar">
+        <h1 class="display-4">Calendar</h1>
+        <label for="year-dropdown">Select a year: </label>
+        <select id="year-dropdown" class="form-select">
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+        </select>
+        <table class="table table-bordered">
             <tbody>
-                <!-- Calendar days will be generated here using JavaScript -->
+                <tr>
+                    <td class="month">Jan</td>
+                    <td class="month">Feb</td>
+                    <td class="month">Mar</td>
+                    <td class="month">Apr</td>
+                </tr>
+                <tr>
+                    <td class="month">May</td>
+                    <td class="month">Jun</td>
+                    <td class="month">Jul</td>
+                    <td class="month">Aug</td>
+                </tr>
+                <tr>
+                    <td class="month">Sep</td>
+                    <td class="month">Oct</td>
+                    <td class="month">Nov</td>
+                    <td class="month">Dec</td>
+                </tr>
             </tbody>
         </table>
     </div>
 
-    <script>
-        const currentDate = new Date();
-        let currentYear = currentDate.getFullYear();
-        let currentMonth = currentDate.getMonth();
-        const calendar = document.getElementById('calendar');
-        const currentDateElement = document.getElementById('current-date');
-        const calendarBody = document.querySelector('tbody');
+  <script>
+    const currentDate = new Date();
+    const calendar = document.getElementById('calendar');
+    const yearDropdown = document.getElementById('year-dropdown');
 
-        function generateCalendar() {
-            // Clear the existing calendar
-            calendarBody.innerHTML = '';
+    // Event listener for clicking on a month cell
+    document.querySelectorAll('.month').forEach((cell, index) => {
+        cell.addEventListener('click', () => {
+            const monthName = cell.textContent;
+            const selectedYear = yearDropdown.value;
+            const monthNumber = index + 1; // No 0th month
+            const formattedMonth = monthNumber.toString().padStart(2, '0'); // 2-digit month
 
-            // Calculate the first day and last day of the current month
-            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
-            const lastDay = new Date(currentYear, currentMonth + 1, 0).getDate();
-
-            // Set the calendar header
-            currentDateElement.textContent = new Date(currentYear, currentMonth, 1).toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
-
-            // Generate calendar cells
-            let day = 1;
-            for (let i = 0; i < 6; i++) {
-                const row = document.createElement('tr');
-                for (let j = 0; j < 7; j++) {
-                    const cell = document.createElement('td');
-                    if (i === 0 && j < firstDay) {
-                        // Add empty cells before the first day of the month
-                        cell.textContent = '';
-                    } else if (day <= lastDay) {
-                        cell.textContent = day;
-                        day++;
-                        // You can add event listeners to the cells to handle clicks for transitioning to another page
-                    }
-                    row.appendChild(cell);
-                }
-                calendarBody.appendChild(row);
-            }
-        }
-
-        // Event listeners for navigating the calendar
-        document.getElementById('prev-year').addEventListener('click', () => {
-            currentYear--;
-            generateCalendar();
+            const link = `https://dailyillini.com/${selectedYear}/${formattedMonth}/`;
+            window.location.href = link; // Redirect to the selected link
         });
-
-        document.getElementById('prev-month').addEventListener('click', () => {
-            if (currentMonth === 0) {
-                currentMonth = 11;
-                currentYear--;
-            } else {
-                currentMonth--;
-            }
-            generateCalendar();
-        });
-
-        document.getElementById('next-month').addEventListener('click', () => {
-            if (currentMonth === 11) {
-                currentMonth = 0;
-                currentYear++;
-            } else {
-                currentMonth++;
-            }
-            generateCalendar();
-        });
-
-        document.getElementById('next-year').addEventListener('click', () => {
-            currentYear++;
-            generateCalendar();
-        });
-
-        // Initial calendar generation
-        generateCalendar();
-    </script>
-</body>
-</html>
+    });
+  </script>
+  </body>
+  </html>
