@@ -13,7 +13,9 @@
         #calendar {
             max-width: 600px;
             margin: 20px auto;
-            padding: 20px;
+            border: solid 1px #d9d9d9;
+            border-radius: 5px;
+            padding: 30px;
             text-align: left;
             font-family: 'Montserrat', sans-serif;
             font-weight: 500;
@@ -21,7 +23,7 @@
 
         h2#current-date {
             font-size: 24px;
-            margin: 10px 0;
+            margin-bottom: 10px;
             text-align: center;
         }
 
@@ -29,6 +31,10 @@
             width: 100%;
             border-collapse: collapse;
             text-align: center;
+        }
+
+        tr, td {
+            border: solid 1px #d9d9d9;
         }
 
         .month {
@@ -45,20 +51,11 @@
             color: #fff; /* Change text color to white on hover */
         }
 
-        th, td {
-            padding: 10px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 28px;
-            margin: 20px 0;
-        }
-
         #year-dropdown {
             width: 120px; /* Made the dropdown wider */
             margin-bottom: 40px; /* Added space under the dropdown */
         }
+
         #year-dropdown:focus {
             border-color: #ff7700;
             box-shadow: 0 0 0 4px #ffd0a6;
